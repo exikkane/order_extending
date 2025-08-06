@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>order_extending</id>
+    <version>1.0</version>
+    <priority>10000</priority>
+    <position>0</position>
+    <default_language>ru</default_language>
+    <status>active</status>
+    <supplier>A. Larionov | CS-Cart</supplier>
+    <queries>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:rfq_requests` (
+            `request_id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+            `user_id` INT UNSIGNED NOT NULL,
+            `category_id` INT UNSIGNED NOT NULL,
+            `vendors_ids` TEXT NOT NULL,  -- JSON или CSV-строка ID поставщиков
+            `task_description` TEXT NOT NULL,
+            `filename` varchar(100),
+            `comparison_criteria` TEXT,    -- До 20 строк, одна характеристика на строку
+            `response_deadline_days` TINYINT UNSIGNED NOT NULL DEFAULT 3, -- 1–14
+            `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            `status` char(1) DEFAULT 'N',
+            PRIMARY KEY (`request_id`),
+            KEY `user_id` (`user_id`),
+            KEY `category_id` (`category_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+    </queries>
+    <email_templates>
+        <templates>
+            <item>
+                <code><![CDATA[rfq_requests_created]]></code>
+                <area><![CDATA[C]]></area>
+                <status><![CDATA[A]]></status>
+                <default_subject><![CDATA[{{ __("rfq_request_subj_c") }} #{{ rfq_request_id }} {{ __("rfq_request_created") }}]]></default_subject>
+                <default_template><![CDATA[{{ snippet("header") }}
+  {{ __("rfq_request_c_body") }}
+
+{{ snippet("footer") }}]]></default_template>
+                <addon><![CDATA[order_extending]]></addon>
+            </item>
+
+            <item>
+                <code><![CDATA[rfq_requests_created]]></code>
+                <area><![CDATA[A]]></area>
+                <status><![CDATA[A]]></status>
+                <default_subject><![CDATA[{{ __("rfq_request_subj_a") }} #{{ rfq_request_id }}]]></default_subject>
+                <default_template><![CDATA[{{ snippet("header") }}
+  {{ __("rfq_request_a_body") }}
+
+{{ snippet("footer") }}]]></default_template>
+                <addon><![CDATA[order_extending]]></addon>
+            </item>
+        </templates>
+    </email_templates>
+</addon>

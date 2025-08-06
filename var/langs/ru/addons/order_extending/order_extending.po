@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cs-cart-latest\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: cs-cart-latest\n"
+"X-Crowdin-Project-ID: 50163\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /release-4.18.4/addons/access_restrictions.po\n"
+"X-Crowdin-File-ID: 9541\n"
+"PO-Revision-Date: 2025-06-04 11:25\n"
+
+msgctxt "Addons::name::order_extending"
+msgid "Запрос товара"
+msgstr "Запрос товара"
+
+msgctxt "Languages::rfq_statuses.not_processed"
+msgid "Не обработан"
+msgstr "Не обработан"
+
+msgctxt "Languages::rfq_statuses.processed"
+msgid "Обработан"
+msgstr "Обработан"
+
+msgctxt "Languages::rfq_statuses.in_progress"
+msgid "В работе"
+msgstr "В работе"
+
+msgctxt "Languages::rfq_statuses.completed"
+msgid "Завершен"
+msgstr "Завершен"
+
+msgctxt "Languages::rfq_requests"
+msgid "Запрос товара"
+msgstr "Запрос товара"
+
+msgctxt "Languages::request_id"
+msgid "ID запроса"
+msgstr "ID запроса"
+
+msgctxt "Languages::created_at"
+msgid "Дата создания"
+msgstr "Дата создания"
+
+msgctxt "Languages::deadline"
+msgid "Срок ответа"
+msgstr "Срок ответа"
+
+msgctxt "Languages::task_description"
+msgid "Описание задания"
+msgstr "Описание задания"
+
+msgctxt "Languages::comparison_criteria"
+msgid "Характеристики для сравнения"
+msgstr "Характеристики для сравнения"
+
+msgctxt "Languages::place_rfq_request"
+msgid "Разместить заказ на деталь"
+msgstr "Разместить заказ на деталь"
+
+msgctxt "Languages::upload_files"
+msgid "Загрузить файл"
+msgstr "Загрузить файл"
+
+msgctxt "Languages::each_criterion_becomes_column"
+msgid "Каждая характеристика станет отдельной колонкой в сравнительной таблице (например: материал, точность, допуски…)"
+msgstr "Каждая характеристика станет отдельной колонкой в сравнительной таблице (например: материал, точность, допуски…)"
+
+msgctxt "Languages::i_consent_data_transfer"
+msgid "Согласие на передачу данных поставщикам"
+msgstr "Согласие на передачу данных поставщикам"
