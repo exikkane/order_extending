@@ -29,7 +29,7 @@
                     <label><input type="checkbox" id="select_all_vendors"> {__("select_all")}</label>
                 </div>
 
-                <div id="vendors_select_wrapper">
+                <div id="vendors_select_wrapper_{$section}">
                     {foreach $vendors as $vendor_id => $vendor}
                         <div class="ty-input-checkbox-item">
                             <label>
@@ -38,8 +38,8 @@
                             </label>
                         </div>
                     {/foreach}
-                    <p><span id="vendors_selected_count">{__("selected")}: {if !empty($vendors)}{count($vendors)}{else}0{/if}</span></p>
-                    <!--vendors_select_wrapper--></div>
+                    <p><span id="vendors_selected_count_{$section}">{__("selected")}: {if !empty($vendors)}{count($vendors)}{else}0{/if}</span></p>
+                    <!--vendors_select_wrapper_{$section}--></div>
             </div>
 
         </div>
@@ -105,3 +105,36 @@
         width: 100%;
     }
 </style>
+
+<script>
+    (function(_, $) {
+        $('#rfq_request_categories').on('change', function() {
+            var categoryId = $(this).val();
+            if (!categoryId) {
+                $('#vendors_list').empty();
+                $('#vendors_selected_count').text('{__("selected")|escape:javascript}: 0');
+                return;
+            }
+            $.ceAjax('request', fn_url('rfq_request.get_vendors_by_category?category_id=' + categoryId + '&section={$section}'), {
+                hidden: false,
+                result_ids: 'vendors_select_wrapper_{$section}'
+            });
+        });
+
+        $('#vendors').on('change', '#select_all_vendors', function() {
+            var checked = $(this).is(':checked');
+            $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').prop('checked', checked);
+
+            var count = checked ? $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').length : 0;
+            $('#vendors_selected_count_{$section}').text('{__("selected")|escape:javascript}: ' + count);
+        });
+
+        $('#vendors').on('change', 'input[type="checkbox"][name="rfq_request[vendors][]"]', function() {
+            var total = $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').length;
+            var checked = $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]:checked').length;
+
+            $('#vendors_selected_count_{$section}').text('{__("selected")|escape:javascript}: ' + checked);
+            $('#select_all_vendors').prop('checked', total === checked && total > 0);
+        });
+    }(Tygh, Tygh.$));
+</script>

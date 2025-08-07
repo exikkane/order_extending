@@ -15,6 +15,7 @@ if ($mode == 'get_vendors_by_category') {
         $vendors = fn_order_extending_get_vendors_by_category($_REQUEST['category_id']);
 
         Tygh::$app['view']->assign('vendors', $vendors);
+        Tygh::$app['view']->assign('section', $_REQUEST['section']);
         Tygh::$app['view']->display('addons/order_extending/components/request_form.tpl');
         exit;
     }

@@ -1,6 +1,6 @@
 {if $auth.user_id}
     {capture name="rfq_request_popup"}
-        {include file="addons/order_extending/components/request_form.tpl"}
+        {include file="addons/order_extending/components/request_form.tpl" section='category'}
     {/capture}
 
     {include file="common/popupbox.tpl"
