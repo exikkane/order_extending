@@ -60,8 +60,8 @@
                                     <td width="20%" data-th="{__("request_id")}" class="table__first-column">
                                         <a class="underlined link--monochrome" href="{"rfq_requests.details&request_id=`$rqf_request.request_id`"|fn_url}"><span>#{$rqf_request.request_id}</span></a>
                                     </td>
-                                    <td width="12%" data-th="{__("user_id")}">
-                                        <a class="underlined link--monochrome" href="{"profiles.update&user_id=`$rqf_request.user_id`"|fn_url}"><span>{$rqf_request.user_id}</span></a>
+                                    <td width="12%" data-th="{__("user")}">
+                                        <a class="underlined link--monochrome" href="{"profiles.update&user_id=`$rqf_request.user_id`"|fn_url}"><span>{$rqf_request.user_id|fn_get_user_name}</span></a>
                                     </td>
                                     <td width="14%" data-th="{__("category")}">
                                         <a class="underlined link--monochrome" href="{"categories.update&category_id=`$rqf_request.category_id`"|fn_url}"><span>{$rqf_request.category_id|fn_get_category_name}</span></a>
@@ -80,8 +80,8 @@
                                             {assign var="return_current_url" value=$config.current_url|escape:url}
                                             {capture name="tools_list"}
                                                 {hook name="shipments:list_extra_links"}
-                                                    <li>{btn type="list" text=__("view") href="rqf_requests.details?request_id=`$rqf_request.request_id`"}</li>
-                                                    <li>{btn type="list" text=__("delete") class="cm-confirm" href="rqf_requests.delete?rfq_request_ids[]=`$rqf_request.request_id`&redirect_url=`$return_current_url`" method="POST"}</li>
+                                                    <li>{btn type="list" text=__("view") href="rfq_requests.details?request_id=`$rqf_request.request_id`"}</li>
+                                                    <li>{btn type="list" text=__("delete") class="cm-confirm" href="rfq_requests.delete?rfq_request_ids[]=`$rqf_request.request_id`&redirect_url=`$return_current_url`" method="POST"}</li>
                                                 {/hook}
                                             {/capture}
                                             {dropdown content=$smarty.capture.tools_list}
@@ -89,7 +89,7 @@
 
                                     </td>
                                     <td width="10%" class="right" data-th="{__("status")}">
-                                        {include file="common/select_popup.tpl" type="rqf_request" id=$rqf_request.request_id status=$rqf_request.status items_status=$request_statuses table="rfq_requests" object_id_name="request_id" popup_additional_class="dropleft"}
+                                        {include file="common/select_popup.tpl" type="rfq_request" id=$rqf_request.request_id status=$rqf_request.status items_status=$request_statuses table="rfq_requests" object_id_name="request_id" popup_additional_class="dropleft"}
                                     </td>
 
                                 </tr>

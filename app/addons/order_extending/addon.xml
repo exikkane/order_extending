@@ -15,7 +15,6 @@
             `category_id` INT UNSIGNED NOT NULL,
             `vendors_ids` TEXT NOT NULL,  -- JSON или CSV-строка ID поставщиков
             `task_description` TEXT NOT NULL,
-            `filename` varchar(100),
             `comparison_criteria` TEXT,    -- До 20 строк, одна характеристика на строку
             `response_deadline_days` TINYINT UNSIGNED NOT NULL DEFAULT 3, -- 1–14
             `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -24,6 +23,13 @@
             PRIMARY KEY (`request_id`),
             KEY `user_id` (`user_id`),
             KEY `category_id` (`category_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item>
+            CREATE TABLE IF NOT EXISTS `?:rfq_requests_files` (
+            `request_id` MEDIUMINT(8) UNSIGNED NOT NULL,
+            `filename` varchar(100),
+            INDEX (`request_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         </item>
     </queries>

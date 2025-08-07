@@ -1,0 +1,97 @@
+msgid ""
+msgstr "Project-Id-Version: tygh\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: English\n"
+"Language: en_US"
+
+msgctxt "Addons::name::order_extending"
+msgid "Запрос товара"
+msgstr "Product request"
+
+msgctxt "Languages::rfq_statuses.not_processed"
+msgid "Не обработан"
+msgstr "Not processed"
+
+msgctxt "Languages::rfq_statuses.processed"
+msgid "Обработан"
+msgstr "Processed"
+
+msgctxt "Languages::rfq_statuses.in_progress"
+msgid "В работе"
+msgstr "In progress"
+
+msgctxt "Languages::rfq_statuses.completed"
+msgid "Завершен"
+msgstr "Completed"
+
+msgctxt "Languages::rfq_requests"
+msgid "Запросы товара"
+msgstr "Product requests"
+
+msgctxt "Languages::request_id"
+msgid "ID запроса"
+msgstr "Request ID"
+
+msgctxt "Languages::created_at"
+msgid "Дата создания"
+msgstr "Created at"
+
+msgctxt "Languages::deadline"
+msgid "Срок ответа (дн.)"
+msgstr "Response deadline (days)"
+
+msgctxt "Languages::task_description"
+msgid "Описание задания"
+msgstr "Task description"
+
+msgctxt "Languages::comparison_criteria"
+msgid "Характеристики для сравнения"
+msgstr "Comparison criteria"
+
+msgctxt "Languages::place_rfq_request"
+msgid "Разместить заказ на деталь"
+msgstr "Place part order"
+
+msgctxt "Languages::upload_files"
+msgid "Загрузить файл"
+msgstr "Upload file"
+
+msgctxt "Languages::each_criterion_becomes_column"
+msgid "Каждая характеристика станет отдельной колонкой в сравнительной таблице (например: материал, точность, допуски…)"
+msgstr "Each criterion will become a separate column in the comparison table (e.g., material, precision, tolerances...)"
+
+msgctxt "Languages::i_consent_data_transfer"
+msgid "Согласие на передачу данных поставщикам"
+msgstr "I consent to the transfer of data to suppliers"
+
+msgctxt "Languages::rfq_request_form_title"
+msgid "Мы соберем предложения от выбранных поставщиков и пришлём вам конкурентную карту для сравнения"
+msgstr "We will collect offers from selected suppliers and send you a competitive comparison sheet"
+
+msgctxt "Languages::order_extending_request_sent_successfully"
+msgid "Заявка #[id] создана. Скоро мы пришлем вам конкурентную карту"
+msgstr "Request #[id] has been created. We will send you a competitive comparison sheet shortly"
+
+msgctxt "Languages::rfq_request_subj_a"
+msgid "Новое размещение заказа. Заявка"
+msgstr "New order placement. Request"
+
+msgctxt "Languages::rfq_request_a_body"
+msgid "Новое размещение заказа"
+msgstr "New order placement"
+
+msgctxt "Languages::rfq_request_subj_c"
+msgid "Заявка"
+msgstr "Request"
+
+msgctxt "Languages::rfq_request_c_body"
+msgid "Скоро мы пришлем вам конкурентную карту"
+msgstr "We will send you a competitive comparison sheet shortly"
+
+msgctxt "Languages::rfq_request_created"
+msgid "Скоро мы пришлем вам конкурентную карту"
+msgstr "We will send you a competitive comparison sheet shortly"
+
+msgctxt "Languages::comparison-criteria_alert"
+msgid "Пожалуйста, введите не более 20 характеристик через запятую."
+msgstr "Please enter no more than 20 criteria separated by commas."

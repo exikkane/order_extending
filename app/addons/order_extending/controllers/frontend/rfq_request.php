@@ -3,8 +3,8 @@
 if ($mode == 'send_request') {
     $params = $_REQUEST;
 
-    if (fn_send_request($params)) {
-        fn_set_notification('N', __('notice'), __('order_extending_request_sent_successfully'));
+    if ($request_id = fn_order_extending_send_request($params)) {
+        fn_set_notification('N', __('notice'), __('order_extending_request_sent_successfully', ['id' => $request_id]));
 
         return [CONTROLLER_STATUS_REDIRECT, fn_url($params['return_url'])];
     }

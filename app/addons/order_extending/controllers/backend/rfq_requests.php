@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($mode == 'delete' && !empty($_REQUEST['rfq_request_ids']) && is_array($_REQUEST['rfq_request_ids'])) {
         $rqf_request_ids = implode(',', $_REQUEST['rfq_request_ids']);
 
-        fn_delete_requests($rqf_request_ids);
+        fn_order_extending_delete_requests($rqf_request_ids);
 
         return [CONTROLLER_STATUS_OK, 'rfq_request_ids.manage'];
     }
@@ -72,7 +72,10 @@ if ($mode == 'details') {
         $rfq_request = [];
     }
 
+    $request_vendors = fn_order_extending_get_vendors_name_by_ids($rfq_request['vendors_ids']);
+
     Tygh::$app['view']->assign('rfq_request', $rfq_request);
+    Tygh::$app['view']->assign('request_vendors', $request_vendors);
 }
 
 if ($mode == 'manage') {
@@ -86,7 +89,7 @@ Tygh::$app['view']->assign('request_statuses', RequestStatuses::getAll());
 
 if ($mode == 'getfile') {
     if (!empty($_REQUEST['request_id'])) {
-        fn_get_request_file($_REQUEST['request_id']);
+        fn_order_extending_get_request_file($_REQUEST['request_id'], $_REQUEST['filename']);
     }
     exit;
 }

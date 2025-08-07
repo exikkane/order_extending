@@ -1,19 +1,25 @@
 {capture name="mainbox"}
-    <form action="{""|fn_url}" method="post" enctype="multipart/form-data" name="rfq_request_form" class="form-horizontal form-edit">
+    <form action="{""|fn_url}"
+          method="post"
+          enctype="multipart/form-data"
+          name="rfq_request_form"
+          class="form-horizontal form-edit">
 
-        <input type="hidden" name="rfq_request[request_id]" value="{$rfq_request.request_id}" />
+        <input type="hidden"
+               name="rfq_request[request_id]"
+               value="{$rfq_request.request_id}"/>
 
         <div class="control-group">
             <label class="control-label">{__("user")}</label>
             <div class="controls">
-                <div class="text-type">{$rfq_request.user_id}</div>
+                <div class="text-type">{$rfq_request.user_id|fn_get_user_name}</div>
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label">{__("vendors")}</label>
             <div class="controls">
-                <div class="text-type">{$rfq_request.vendors_ids}</div>
+                <div class="text-type">{','|implode:$request_vendors}</div>
             </div>
         </div>
 
@@ -27,10 +33,13 @@
         <div class="control-group">
             <label class="control-label ">{__("file")}</label>
             <div class="controls">
-                {if $rfq_request.filename}
-                    <div class="text-type-value">
-                        <a href="{"rfq_requests.getfile?request_id=`$rfq_request.request_id`"|fn_url}">{$rfq_request.filename}</a>
-                    </div>
+                {if $rfq_request.filenames}
+                    {assign var="filenames_array" value=','|explode:$rfq_request.filenames}
+                    {foreach $filenames_array as $filename}
+                        <div class="text-type-value">
+                            <a href="{"rfq_requests.getfile?request_id=`$rfq_request.request_id`&filename=`$filename`"|fn_url}">{$filename}</a>
+                        </div>
+                    {/foreach}
                 {/if}
             </div>
         </div>
