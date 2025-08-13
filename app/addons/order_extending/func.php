@@ -58,10 +58,12 @@ function fn_order_extending_get_vendors_by_category(int $category_id): array
  */
 function fn_order_extending_process_request_files(int $request_id, array $params)
 {
-    if (empty($params['file_rfq_files'])) {
+    if (empty($params['section'])) {
         return;
     }
-    $attached = fn_filter_uploaded_data('rfq_files');
+
+    $upload_var_name = 'rfq_files_' . $params['section'];
+    $attached = fn_filter_uploaded_data($upload_var_name);
 
     foreach ($attached as $file) {
         $_file_path = fn_order_extending_get_file_path($request_id, $file['name']);

@@ -7,6 +7,7 @@
 >
     <div class="ty-product-review-new-product-review__body">
         <input name="return_url" type="hidden" value="{$smarty.request.return_url|default:$config.current_url}">
+        <input name="section" type="hidden" value="{$section}">
         <input name="rfq_request[user_id]" type="hidden" value="{$auth.user_id}">
         <p>{__('rfq_request_form_title')}</p>
         <div class="ty-control-group">
@@ -53,9 +54,10 @@
             <label class="ty-control-group__title">{__("upload_files")}</label>
             <div class="ty-product-options__fileuploader">
                 {include file="common/fileuploader.tpl"
-                var_name="rfq_files[0]"
-                allowed_ext="pdf,docx,xlsx,csv,jpg,png,zip"
-                multiupload=true
+                    var_name="rfq_files_{$section}[0]"
+                    allowed_ext="pdf,docx,xlsx,csv,jpg,png,zip"
+                    multiupload=true
+                    max_upload_filesize='100M'
                 }
             </div>
         </div>
@@ -108,33 +110,35 @@
 
 <script>
     (function(_, $) {
-        $('#rfq_request_categories').on('change', function() {
-            var categoryId = $(this).val();
-            if (!categoryId) {
-                $('#vendors_list').empty();
-                $('#vendors_selected_count').text('{__("selected")|escape:javascript}: 0');
-                return;
-            }
-            $.ceAjax('request', fn_url('rfq_request.get_vendors_by_category?category_id=' + categoryId + '&section={$section}'), {
-                hidden: false,
-                result_ids: 'vendors_select_wrapper_{$section}'
+        $.ceEvent('on', 'ce.commoninit', function(context) {
+            $('#rfq_request_categories').on('change', function() {
+                var categoryId = $(this).val();
+                if (!categoryId) {
+                    $('#vendors_list').empty();
+                    $('#vendors_selected_count').text('{__("selected")|escape:javascript}: 0');
+                    return;
+                }
+                $.ceAjax('request', fn_url('rfq_request.get_vendors_by_category?category_id=' + categoryId + '&section={$section}'), {
+                    hidden: false,
+                    result_ids: 'vendors_select_wrapper_{$section}'
+                });
             });
-        });
 
-        $('#vendors').on('change', '#select_all_vendors', function() {
-            var checked = $(this).is(':checked');
-            $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').prop('checked', checked);
+            $('#vendors').on('change', '#select_all_vendors', function() {
+                var checked = $(this).is(':checked');
+                $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').prop('checked', checked);
 
-            var count = checked ? $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').length : 0;
-            $('#vendors_selected_count_{$section}').text('{__("selected")|escape:javascript}: ' + count);
-        });
+                var count = checked ? $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').length : 0;
+                $('#vendors_selected_count_{$section}').text('{__("selected")|escape:javascript}: ' + count);
+            });
 
-        $('#vendors').on('change', 'input[type="checkbox"][name="rfq_request[vendors][]"]', function() {
-            var total = $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').length;
-            var checked = $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]:checked').length;
+            $('#vendors').on('change', 'input[type="checkbox"][name="rfq_request[vendors][]"]', function() {
+                var total = $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]').length;
+                var checked = $('#vendors_select_wrapper_{$section} input[type="checkbox"][name="rfq_request[vendors][]"]:checked').length;
 
-            $('#vendors_selected_count_{$section}').text('{__("selected")|escape:javascript}: ' + checked);
-            $('#select_all_vendors').prop('checked', total === checked && total > 0);
+                $('#vendors_selected_count_{$section}').text('{__("selected")|escape:javascript}: ' + checked);
+                $('#select_all_vendors').prop('checked', total === checked && total > 0);
+            });
         });
     }(Tygh, Tygh.$));
 </script>
